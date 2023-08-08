@@ -17,10 +17,10 @@ func newDeck() deck {
 	cards := deck{}
 
 	cardSuits := []string{"Spades", "Diamonds", "Clubs", "Hearts"}
-	cardValues := []string{"Ace", "Two", "Three", "Four", "Five"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
-	for _, value := range cardValues {
-		for _, suit := range cardSuits {
+	for _, suit := range cardSuits {
+		for _, value := range cardValues {
 			cards = append(cards, value+" of "+suit)
 		}
 	}
