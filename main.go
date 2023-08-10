@@ -7,5 +7,5 @@ func main() {
 	/* 	hand, remainingDeck := deal(cards, 5)
 	   	hand.print()
 	   	remainingDeck.print() */
-	fmt.Println(cards.toString())
+	fmt.Println(cards.saveToFile("deck_of_cards.txt"))
 }
