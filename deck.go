@@ -5,8 +5,7 @@ import "fmt"
 // Custom type
 type deck []string
 
-// Using a receiver
-// Any variable of type deck can access this method
+// Using a receiver, Any variable of type deck can access this method
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
@@ -15,5 +14,19 @@ func (d deck) print() {
 
 func newDeck() deck {
 
-	return deck{"Four of Diamonds", "Five of Hearts", "Eight of Spades", "Ace of Clubs", "King of Hearts"}
+	cards := deck{}
+
+	cardSuits := []string{"Spades", "Diamonds", "Clubs", "Hearts"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
+
+	for _, suit := range cardSuits {
+		for _, value := range cardValues {
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+	return cards
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
