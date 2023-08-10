@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	cards := newDeck()
+	//cards := newDeck()
 	/* 	hand, remainingDeck := deal(cards, 5)
 	   	hand.print()
 	   	remainingDeck.print() */
-	fmt.Println(cards.saveToFile("deck_of_cards.txt"))
+	//fmt.Println(cards.saveToFile("deck_of_cards.txt"))
+	cardsDeck := newDeckFromFile("deck_of_cards.txt")
+	fmt.Println(cardsDeck)
 }
