@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"os"
+	"strings"
+	"time"
+)
 
 // Custom type
 type deck []string
@@ -29,4 +35,36 @@ func newDeck() deck {
 
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+// ioutil is deprecated since go 1.16, so we use os instead
+func (d deck) saveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+	fileByte, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error::", err)
+		os.Exit(1)
+	}
+	return deck(strings.Split((string(fileByte)), ","))
+}
+
+func (d deck) shuffle() {
+
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		//generate random number between 0 and len-1
+		newPosition := r.Intn(len(d) - 1)
+
+		//swap
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
 }
