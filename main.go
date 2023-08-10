@@ -9,5 +9,8 @@ func main() {
 	   	remainingDeck.print() */
 	//fmt.Println(cards.saveToFile("deck_of_cards.txt"))
 	cardsDeck := newDeckFromFile("deck_of_cards.txt")
-	fmt.Println(cardsDeck)
+	cardsDeck.print()
+	fmt.Println("*******")
+	cardsDeck.shuffle()
+	cardsDeck.print()
 }
